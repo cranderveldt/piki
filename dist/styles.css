@@ -2,10 +2,11 @@
 
 .blsl-search, .blsl-options { display: none; }
 
-.blsl-options { box-sizing: border-box; position: absolute; top: 26px; left: 0; max-height: 200px; overflow-y: scroll; width: 100%; background: #FFF; padding: 5px; border: 1px solid #a6a6a6; }
+.blsl-options { box-sizing: border-box; position: absolute; top: 26px; left: 0; max-height: 200px; overflow-y: scroll; width: 100%; background: #FFF; border: 1px solid #a6a6a6; }
 .blsl-options ul { margin: 0; list-style: none; padding: 0; }
-.blsl-options ul li { display: none; margin: 0 0 5px; list-style: none; padding: 0; }
+.blsl-options ul li { display: none; margin: 0; list-style: none; padding: 5px; }
 .blsl-options ul li.blsl-match { display: block; }
+.blsl-options ul li.blsl-highlight { background: #d4eef8; }
 
 .blsl-search-field { box-sizing: border-box; width: 100%; padding: 5px 10px; margin: 0; }
 

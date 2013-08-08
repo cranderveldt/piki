@@ -36,7 +36,6 @@ $border: #A6A6A6;
     overflow-y: scroll;
     width: 100%;
     background: #FFF;
-    padding: 5px;
     border: 1px solid $border;
     ul {
         margin: 0;
@@ -44,11 +43,14 @@ $border: #A6A6A6;
         padding: 0;
         li {
             display: none;
-            margin: 0 0 5px;
+            margin: 0;
             list-style: none;
-            padding: 0;
+            padding: 5px;
             &.blsl-match {
                 display: block;
+            }
+            &.blsl-highlight {
+                background: #d4eef8;
             }
         }
     }
