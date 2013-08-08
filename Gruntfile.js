@@ -67,18 +67,14 @@ module.exports = function(grunt) {
                 files: {
                     'dist/styles.css': 'dev/styles.scss', // 'destination': 'source'
                 }
-            },
+            }
         },
         
         // This sets up watch configurations
         watch: {
             all: {
                 files: ['dev/*.scss', 'dev/*.js'],
-                tasks: ['default']
-            },
-            sass: {
-                files: ['dev/*.scss'],
-                tasks: ['sass:dev']
+                tasks: ['common','sass:dist']
             }
         },
     });
@@ -93,5 +89,5 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask("common", ['jshint:all', 'uglify']);
-    grunt.registerTask("default", ['common', 'sass:dist', 'watch:sass']);
+    grunt.registerTask("default", ['common', 'sass:dist', 'watch:all']);
 };
