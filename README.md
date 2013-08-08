@@ -1,7 +1,7 @@
 Blue Select
 ===========
 
-This is kkinnable, Blue State-created select replacement jQuery plugin.
+This is skinnable, Blue State-created select replacement jQuery plugin.
 
 ## Usage
 
