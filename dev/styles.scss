@@ -1,0 +1,14 @@
+@mixin inline-block($alignment: none) {
+    display: inline-block;
+    @if $alignment and $alignment != none {
+        vertical-align: $alignment; 
+    }
+    *vertical-align: auto;
+    zoom: 1;
+    *display: inline
+}
+
+.blsl-container {
+    background: #eee;
+    @include inline-block;
+}

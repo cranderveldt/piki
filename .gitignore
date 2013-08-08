@@ -1,0 +1,15 @@
+# Build Items #
+######################
+dist
+node_modules
+components
+.sass-cache
+*.dev.css
+*.dev.js
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
