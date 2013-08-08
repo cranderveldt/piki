@@ -5,21 +5,26 @@
     <title>Blue Select Demo</title>
     <link rel="stylesheet" href="demo.css">
     <link rel="stylesheet" href="../dist/styles.css">
+    <!-- <link rel="stylesheet" href="assets/bootstrap.min.css"> -->
     <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="../dist/jquery.blueselect.min.js"></script>
     <script>
     jQuery(document).ready(function($){
-        //$('#activate').on('click', function(){
+        $('#activate').on('click', function(){
             $('select').blueSelect();
-        //});
+            $('#activate').off();
+        });
     });
     </script>
 </head>
 <body>
     <div id="container">
         <h1>Blue Select Demo</h1>
-        <button id="activate">Activate Demo</button>
+        <div class="button-group">
+            <button id="activate">Activate Demo</button>
+            <button id="style">Style Demo</button>
+        </div>
         <form action="">
             <fieldset>
                 <select name="" id="">
@@ -28,6 +33,12 @@
                     <option value="brown">Brown</option>
                     <option value="red">Red</option>
                     <option value="black">Black</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="purple">Purple</option>
+                    <option value="pink">Pink</option>
+                    <option value="hippie">Tie-Dye</option>
+                    <option value="white">White</option>
                 </select>
             </fieldset>
         </form>
