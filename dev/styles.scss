@@ -9,6 +9,14 @@
 }
 
 .blsl-container {
-    background: #eee;
     @include inline-block;
+    position: relative;
+}
+.blsl-search, .blsl-options {
+    display: none;
+}
+.blsl-options {
+    position: absolute;
+    top: 20px;
+    left: 0;
 }
