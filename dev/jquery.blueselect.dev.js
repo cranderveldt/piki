@@ -14,7 +14,6 @@ BUGLIST
         return this.each(function() {
             
             var $this = $(this);
-            var keyHasBeenPressed = false;
             var markup = 
             '<div class="blsl-container">' +
                 '<div class="blsl-select">';
@@ -67,17 +66,12 @@ BUGLIST
             var highlightNext = function($container) {
                 var $current = $container.find('.blsl-highlight');
                 if ($current.length > 0) {
-                    console.log('current > 0');
                     var $next = $current.next('.blsl-match');
                     if ($next.length > 0) {
-                        console.log('next > 0');
-                        $current.removeClass('blsl-highlight');
-                        $next.addClass('blsl-highlight');
+                        $current.removeClass('blsl-highlight').next('.blsl-match').addClass('blsl-highlight');
                     }
                 } else {
-                    console.log('current less than 0');
                     if ($container.find('.blsl-match').length > 0) {
-                        console.log('match > 0');
                         $container.find('.blsl-match:first').addClass('blsl-highlight');
                     }
                 }
@@ -85,63 +79,60 @@ BUGLIST
             var highlightPrev = function($container) {
                 var $current = $container.find('.blsl-highlight');
                 if ($current.length > 0) {
-                    console.log('current > 0');
                     var $prev = $current.prev('.blsl-match');
                     if ($prev.length > 0) {
-                        console.log('prev > 0');
                         $current.removeClass('blsl-highlight').prev('.blsl-match').addClass('blsl-highlight');
                     }
                 } else {
-                    console.log('current less than 0');
                     if ($container.find('.blsl-match').length > 0) {
-                        console.log('match > 0');
                         $container.find('.blsl-match:first').addClass('blsl-highlight');
                     }
                 }
             };
             // Listeners
             // Prevent form submit on enter
-            $('html').on('keypress', '.blsl-search-field', function(e){
+            $scope.on('keypress', '.blsl-search-field', function(e){
                if (e.keyCode === 13) { e.preventDefault(); }
             });
             // Narrow search results on keyup
-            $('html').on('keyup', '.blsl-search-field', function(e){
-                if(!keyHasBeenPressed) {
+            $scope.on('keyup', '.blsl-search-field', function(e){
+                var keyHasBeenPressed = false;
+                var $container = $(this).parent().parent();
+                var list = $container.find('.blsl-options ul li');
+                // Enter
+                if (e.keyCode === 13) {
+                    setSelectTitle($container);
+                }
+                // Up
+                if (e.keyCode === 38) {
                     keyHasBeenPressed = true;
-                    var $container = $(this).parent().parent();
-                    var list = $container.find('.blsl-options ul li');
-                    // Enter
-                    if (e.keyCode === 13) {
-                        setSelectTitle($container);
+                    highlightPrev($container);
+                }
+                // Down
+                if (e.keyCode === 40) {
+                    keyHasBeenPressed = true;
+                    highlightNext($container);
+                }
+                var search = $(this).val().toLowerCase();
+                list.each(function(){
+                    var text = $(this).text().toLowerCase();
+                    if (text.indexOf(search) === -1) {
+                        $(this).removeClass('blsl-match');
+                    } else {
+                        $(this).addClass('blsl-match');
                     }
-                    // Up
-                    if (e.keyCode === 38) {
-                        highlightPrev($container);
-                    }
-                    // Down
-                    if (e.keyCode === 40) {
-                        highlightNext($container);
-                    }
-                    var search = $(this).val().toLowerCase();
-                    list.each(function(){
-                        var text = $(this).text().toLowerCase();
-                        if (text.indexOf(search) === -1) {
-                            $(this).removeClass('blsl-match');
-                        } else {
-                            $(this).addClass('blsl-match');
-                        }
-                    });
+                });
+                if (!keyHasBeenPressed) {
                     $container.find('.blsl-match:first').addClass('blsl-highlight').siblings().removeClass('blsl-highlight');
-                    keyHasBeenPressed = false;
                 }
             });
             // Click on a match
-            $('html').on('click', '.blsl-match', function(){
+            $scope.on('click', '.blsl-match', function(){
                 $(this).addClass('blsl-highlight').siblings().removeClass('blsl-highlight');
                 setSelectTitle($(this).parent().parent().parent());
             });
             // Click on the title to reveal the search and dropdown
-            $('html').on('click', '.blsl-select', function(){
+            $scope.on('click', '.blsl-select', function(){
                 $(this).hide().siblings().show().end().parent().find('.blsl-search-field').focus();
                 // Click anywhere outside the blsl elements to close
                 $('body').on('click', function(e){
