@@ -1,6 +1,5 @@
 # Build Items #
 ######################
-dist
 node_modules
 components
 .sass-cache

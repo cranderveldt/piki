@@ -1,0 +1,14 @@
+.blsl-container { display: inline-block; *vertical-align: auto; zoom: 1; *display: inline; position: relative; }
+
+.blsl-search, .blsl-options { display: none; }
+
+.blsl-options { box-sizing: border-box; position: absolute; top: 26px; left: 0; max-height: 200px; overflow-y: scroll; width: 100%; background: #FFF; padding: 5px; border: 1px solid #a6a6a6; }
+.blsl-options ul { margin: 0; list-style: none; padding: 0; }
+.blsl-options ul li { display: none; margin: 0 0 5px; list-style: none; padding: 0; }
+.blsl-options ul li.blsl-match { display: block; }
+
+.blsl-search-field { box-sizing: border-box; width: 100%; padding: 5px 10px; margin: 0; }
+
+.blsl-select { display: inline-block; *vertical-align: auto; zoom: 1; *display: inline; box-sizing: border-box; width: 100%; border: 1px solid #a6a6a6; background-color: #f2f2f2; background-position: 0 0; background-repeat: repeat-x; background-image: url("fallback.png"); background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#f2f2f2)); background-image: -webkit-linear-gradient(top, white, #f2f2f2); background-image: -moz-linear-gradient(top, white, #f2f2f2); background-image: -o-linear-gradient(top, white, #f2f2f2); background-image: linear-gradient(to bottom, #ffffff, #f2f2f2); cursor: default; border-radius: 5px; font: -webkit-small-control; padding: 2px 15px 3px 5px; }
+
+.blsl-icon { position: absolute; top: 3px; right: 5px; }
