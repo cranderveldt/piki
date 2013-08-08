@@ -10,16 +10,18 @@
     <script src="../dist/jquery.blueselect.min.js"></script>
     <script>
     jQuery(document).ready(function($){
-        $('select').blueSelect();
+        //$('#activate').on('click', function(){
+            $('select').blueSelect();
+        //});
     });
     </script>
 </head>
 <body>
     <div id="container">
         <h1>Blue Select Demo</h1>
+        <button id="activate">Activate Demo</button>
         <form action="">
             <fieldset>
-                <input type="text" class="text" placeholder="Name">
                 <select name="" id="">
                     <option value="--" selected="selected" disabled="disabled">Hair Color</option>
                     <option value="blonde">Blonde</option>

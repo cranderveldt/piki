@@ -19,3 +19,15 @@ h1 {
     max-width: 800px;
     padding: 20px;
 }
+button {
+    background: #7CACD4;
+    border: 0;
+    color: #FFF;
+    font-weight: bold;
+    padding: 20px 50px;
+    max-width: 400px;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+    font-size: 36px;
+}
