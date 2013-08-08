@@ -9,10 +9,12 @@ BUGLIST
     $.fn.blueSelect = function(options) {
         var settings = $.extend({
             icon: "&varr;"
+            , skin: 'default'
         }, options);
         return this.each(function() {
             
             var $this = $(this);
+            var keyHasBeenPressed = false;
             var markup = 
             '<div class="blsl-container">' +
                 '<div class="blsl-select">';
@@ -104,30 +106,34 @@ BUGLIST
             });
             // Narrow search results on keyup
             $('html').on('keyup', '.blsl-search-field', function(e){
-                var $container = $(this).parent().parent();
-                var list = $container.find('.blsl-options ul li');
-                // Enter
-                if (e.keyCode === 13) {
-                    setSelectTitle($container);
-                }
-                // Up
-                if (e.keyCode === 38) {
-                    highlightPrev($container);
-                }
-                // Down
-                if (e.keyCode === 40) {
-                    highlightNext($container);
-                }
-                var search = $(this).val().toLowerCase();
-                list.each(function(){
-                    var text = $(this).text().toLowerCase();
-                    if (text.indexOf(search) === -1) {
-                        $(this).removeClass('blsl-match');
-                    } else {
-                        $(this).addClass('blsl-match');
+                if(!keyHasBeenPressed) {
+                    keyHasBeenPressed = true;
+                    var $container = $(this).parent().parent();
+                    var list = $container.find('.blsl-options ul li');
+                    // Enter
+                    if (e.keyCode === 13) {
+                        setSelectTitle($container);
                     }
-                });
-                $container.find('.blsl-match:first').addClass('blsl-highlight').siblings().removeClass('blsl-highlight');
+                    // Up
+                    if (e.keyCode === 38) {
+                        highlightPrev($container);
+                    }
+                    // Down
+                    if (e.keyCode === 40) {
+                        highlightNext($container);
+                    }
+                    var search = $(this).val().toLowerCase();
+                    list.each(function(){
+                        var text = $(this).text().toLowerCase();
+                        if (text.indexOf(search) === -1) {
+                            $(this).removeClass('blsl-match');
+                        } else {
+                            $(this).addClass('blsl-match');
+                        }
+                    });
+                    $container.find('.blsl-match:first').addClass('blsl-highlight').siblings().removeClass('blsl-highlight');
+                    keyHasBeenPressed = false;
+                }
             });
             // Click on a match
             $('html').on('click', '.blsl-match', function(){

@@ -28,6 +28,7 @@ module.exports = function(grunt) {
                 boss: true,
                 eqnull: true,
                 browser: true,
+                laxcomma: true,
                 globals: {
                     console: false,
                     FB: false,
