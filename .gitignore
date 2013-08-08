@@ -3,8 +3,6 @@
 node_modules
 components
 .sass-cache
-*.dev.css
-*.dev.js
 
 # OS generated files #
 ######################
