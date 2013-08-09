@@ -47,6 +47,7 @@ $border: #A6A6A6;
             margin: 0;
             list-style: none;
             padding: 5px;
+            cursor: pointer;
             &.piki-match {
                 display: block;
             }
@@ -72,6 +73,7 @@ $border: #A6A6A6;
     border-radius: 5px;
     font: -webkit-small-control;
     padding: 2px 15px 3px 5px;
+    cursor: pointer;
 }
 .piki-icon {
     position: absolute;
