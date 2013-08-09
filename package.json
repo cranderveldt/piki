@@ -1,7 +1,7 @@
 {
     "name": "blue-select",
     "description": "Skinnable, Blue State-created select replacement script. To replace other options like Chosen.",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "dependencies": {},
     "devDependencies": {
         "grunt": "~0.4.0",
