@@ -49,15 +49,14 @@ BUGLIST
             var $scope = $this.next();
             // Functions
             var setSelectTitle = function($container) {
-                // need to check if $selected is empty
+                // TODO: need to check if $selected is empty
                 var $selected = $container.find('.blsl-highlight').data('blsl-selected', 'selected').removeClass('blsl-highlight').siblings().data('blsl-selected', '').addClass('blsl-match').end();
                 if ($selected.length > 0) {
                     $container.find('.blsl-title').text($selected.text());
                     $container.find('option[value="' + $selected.data('blsl-value') + '"]').prop('selected', 'selected');
                 } else {
                     var $title = $container.find('.blsl-title');
-                    console.log('yeah');
-                    $title.text('whatever');
+                    $title.text($title.data('blsl-default'));
                 }
                 $('body').off();
                 $container.find('.blsl-select').show().siblings().hide();
@@ -69,6 +68,7 @@ BUGLIST
                     var $next = $current.next('.blsl-match');
                     if ($next.length > 0) {
                         $current.removeClass('blsl-highlight').next('.blsl-match').addClass('blsl-highlight');
+                        $next.scrollTop(1000);
                     }
                 } else {
                     if ($container.find('.blsl-match').length > 0) {
@@ -92,26 +92,16 @@ BUGLIST
             // Listeners
             // Prevent form submit on enter
             $scope.on('keypress', '.blsl-search-field', function(e){
-               if (e.keyCode === 13) { e.preventDefault(); }
+               if (e.keyCode === 13 || e.keyCode === 38 || e.keyCode === 40) { e.preventDefault(); }
             });
             // Narrow search results on keyup
             $scope.on('keyup', '.blsl-search-field', function(e){
-                var keyHasBeenPressed = false;
+                var highlightHasBeenMoved = false;
                 var $container = $(this).parent().parent();
                 var list = $container.find('.blsl-options ul li');
                 // Enter
                 if (e.keyCode === 13) {
                     setSelectTitle($container);
-                }
-                // Up
-                if (e.keyCode === 38) {
-                    keyHasBeenPressed = true;
-                    highlightPrev($container);
-                }
-                // Down
-                if (e.keyCode === 40) {
-                    keyHasBeenPressed = true;
-                    highlightNext($container);
                 }
                 var search = $(this).val().toLowerCase();
                 list.each(function(){
@@ -122,7 +112,17 @@ BUGLIST
                         $(this).addClass('blsl-match');
                     }
                 });
-                if (!keyHasBeenPressed) {
+                // Up
+                if (e.keyCode === 38) {
+                    highlightHasBeenMoved = true;
+                    highlightPrev($container);
+                }
+                // Down
+                if (e.keyCode === 40) {
+                    highlightHasBeenMoved = true;
+                    highlightNext($container);
+                }
+                if (!highlightHasBeenMoved) {
                     $container.find('.blsl-match:first').addClass('blsl-highlight').siblings().removeClass('blsl-highlight');
                 }
             });
