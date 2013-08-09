@@ -61,7 +61,6 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     style: 'compressed',
-                    compass: 1,
                     debugInfo: false,
                     lineNumbers: false
                 },

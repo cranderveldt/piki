@@ -1,9 +1,11 @@
-/*
-BUGLIST
-
--keys don't work at all including enter and arrows
-
-*/
+/*!
+ * Piki PACKAGED v0.0.5
+ * http://cranderveldt.github.co/piki/
+ *
+ * Non-commercial use is licensed under the GPL v3 License
+ *
+ * Copyright 2013 Cranderveldt
+ */
 
 (function ($) {
     $.fn.piki = function(options) {
