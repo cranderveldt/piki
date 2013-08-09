@@ -35,3 +35,7 @@ button {
 #style {
     background: #d47cc9;
 }
+form {
+    text-align: center;
+    padding-top: 50px;
+}
