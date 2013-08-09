@@ -41,14 +41,16 @@ BUGLIST
                 '<div class="piki-options">' +
                     '<ul>';
             $this.find('option[disabled!="disabled"]').each(function(){
-                var $option = $(this);
-                var attrString = '';
-                $.each(this.attributes, function(i, attrib){
-                    var name = attrib.name;
-                    var value = attrib.value;
-                    attrString = attrString + ' data-piki-' + name + '="' + value + '"';
-                });
-                markup = markup + '<li class="piki-match"' + attrString + '>' + $option.text() +'</li>';
+                if ($(this).text().trim() !== '') {
+                    var $option = $(this);
+                    var attrString = '';
+                    $.each(this.attributes, function(i, attrib){
+                        var name = attrib.name;
+                        var value = attrib.value;
+                        attrString = attrString + ' data-piki-' + name + '="' + value + '"';
+                    });
+                    markup = markup + '<li class="piki-match"' + attrString + '>' + $option.text() +'</li>';
+                }
             });
             markup = markup +
                     '</ul>' +
@@ -71,26 +73,18 @@ BUGLIST
                 $container.find('.piki-select').show().siblings().hide();
                 $container.find('.piki-search-field').val('');
             };
-            var highlightNext = function($container) {
+            var moveHighlight = function($container, dir) {
                 var $current = $container.find('.piki-highlight');
+                var $matches = $container.find('.piki-match');
                 if ($current.length > 0) {
-                    var $next = $current.next('.piki-match');
-                    if ($next.length > 0) {
-                        $current.removeClass('piki-highlight').next('.piki-match').addClass('piki-highlight');
-                        $next.scrollTop(1000);
-                    }
-                } else {
-                    if ($container.find('.piki-match').length > 0) {
-                        $container.find('.piki-match:first').addClass('piki-highlight');
-                    }
-                }
-            };
-            var highlightPrev = function($container) {
-                var $current = $container.find('.piki-highlight');
-                if ($current.length > 0) {
-                    var $prev = $current.prev('.piki-match');
-                    if ($prev.length > 0) {
-                        $current.removeClass('piki-highlight').prev('.piki-match').addClass('piki-highlight');
+                    if ($matches.length > 1) {
+                        var index = $matches.index($current);
+                        var $next = $($matches[index + dir]);
+                        if ($next === undefined) {
+                            $next = $current;
+                        }
+                        $current.removeClass('piki-highlight');
+                        $next.addClass('piki-highlight');
                     }
                 } else {
                     if ($container.find('.piki-match').length > 0) {
@@ -124,12 +118,12 @@ BUGLIST
                 // Up
                 if (e.keyCode === 38) {
                     highlightHasBeenMoved = true;
-                    highlightPrev($container);
+                    moveHighlight($container, -1);
                 }
                 // Down
                 if (e.keyCode === 40) {
                     highlightHasBeenMoved = true;
-                    highlightNext($container);
+                    moveHighlight($container, 1);
                 }
                 if (!highlightHasBeenMoved) {
                     $container.find('.piki-match:first').addClass('piki-highlight').siblings().removeClass('piki-highlight');
