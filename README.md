@@ -1,5 +1,5 @@
 Piki
-===========
+====
 
 This is skinnable, Blue State-created select replacement jQuery plugin. Because some people are picky about picking.
 
@@ -22,3 +22,6 @@ jQuery(document).ready(function($){
     });
 });
 ```
+
+## Demo
+Here's a [link to the demo](http://bsdstrategy.github.io/piki/demo/).
