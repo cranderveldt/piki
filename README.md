@@ -7,7 +7,7 @@ This is skinnable, Blue State-created select replacement jQuery plugin. Because 
 
 ```javascript
 jQuery(document).ready(function($){
-    $('select').blueSelect();
+    $('select').piki();
 });
 ```
 
@@ -17,7 +17,7 @@ Right now the only option is `icon` which you use like this:
 
 ```javascript
 jQuery(document).ready(function($){
-    $('select').blueSelect({
+    $('select').piki({
         'icon' : '&caron;'
     });
 });
