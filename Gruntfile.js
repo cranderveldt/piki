@@ -66,7 +66,7 @@ module.exports = function(grunt) {
                     lineNumbers: false
                 },
                 files: {
-                    'dist/styles.css': 'dev/styles.scss', // 'destination': 'source'
+                    'dev/styles.css': 'dev/styles.scss', // 'destination': 'source'
                 }
             }
         },
