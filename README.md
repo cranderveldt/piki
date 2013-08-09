@@ -1,7 +1,7 @@
-Blue Select
+Piki
 ===========
 
-This is skinnable, Blue State-created select replacement jQuery plugin.
+This is skinnable, Blue State-created select replacement jQuery plugin. Because some people are picky about picking.
 
 ## Usage
 
